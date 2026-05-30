@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>王玥莹 · 511's World</title>
+  <meta name="description" content="王玥莹的个人主页 — 大连理工大学，产品、内容与校园实践。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@400;900&family=Noto+Serif+SC:wght@700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Silkscreen:wght@400;700&family=Syne:wght@600;700;800&family=VT323&family=Zhi+Mang+Xing&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/y2k.css" />
+  <script>
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    window.scrollTo(0, 0);
+  </script>
+</head>
+<body>
+  <svg class="svg-filters" aria-hidden="true" focusable="false">
+    <defs>
+      <filter id="ink-print-edge" x="-6%" y="-10%" width="112%" height="120%" color-interpolation-filters="sRGB">
+        <feTurbulence type="fractalNoise" baseFrequency="0.038" numOctaves="4" seed="11" result="noise" />
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.35" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </defs>
+  </svg>
+  <div class="flash-overlay" id="flash-overlay" aria-hidden="true"></div>
+
+  <!-- 全站拼贴长卷：贴纸随页面滚动，分散在不同段落 -->
+  <div class="collage-scroll-track" id="collage-scroll-track" aria-hidden="true">
+    <div class="collage-floats"></div>
+  </div>
+  <!-- 中间内容区淡蒙版：贴纸只在边缘露出，不挡正文 -->
+  <div class="content-veil" aria-hidden="true"></div>
+
+  <button type="button" class="lang-toggle" id="lang-btn" aria-label="Switch to Chinese">
+    <span id="lang-label">中文</span>
+  </button>
+
+  <nav class="site-nav" id="site-nav" aria-label="站点导航">
+    <div class="site-nav-inner">
+      <a href="#hero" class="nav-brand">511</a>
+      <div class="nav-links">
+        <a href="#profile" data-i18n="nav.hero">关于我</a>
+        <a href="#hero" class="nav-hub-link" data-i18n="nav.hub">目录</a>
+        <a href="#projects" data-i18n="nav.projects">项目</a>
+        <a href="#content" data-i18n="nav.content">自媒体</a>
+        <a href="#internship" data-i18n="nav.internship">实习</a>
+        <a href="#student" data-i18n="nav.student">学生工作</a>
+        <a href="#contact" data-i18n="nav.contact">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section id="hero" class="hero">
+      <svg class="hero-spray-filters" aria-hidden="true" width="0" height="0">
+        <defs>
+          <filter id="heroSprayGrit" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+            <feTurbulence type="fractalNoise" baseFrequency="0.075" numOctaves="4" seed="11" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" result="distort" />
+            <feMorphology operator="dilate" radius="0.35" in="distort" result="spread" />
+            <feGaussianBlur in="spread" stdDeviation="0.25" result="soft" />
+            <feComposite in="soft" in2="distort" operator="atop" />
+          </filter>
+        </defs>
+      </svg>
+      <div class="hero-compass" aria-hidden="true">
+        <img src="20/1D17F0E79193A113EFF95D9D7678887C.png" alt="" />
+      </div>
+
+      <div class="hero-type-bg" aria-hidden="true">
+        <div class="hero-type-stage" id="hero-type-stage"></div>
+      </div>
+
+      <div class="hero-inner container">
+        <div class="recaptcha-zone">
+          <div class="recaptcha-paper" aria-hidden="true">
+            <img src="21/FD937C2B39DCA69A364C6D66F74640A3.png" alt="" />
+          </div>
+          <div class="recaptcha-collage" aria-hidden="true">
+            <img src="F14FF510B03CEB4A3D369952AD4A003A.jpg" alt="" decoding="async" />
+          </div>
+          <div class="recaptcha-stack">
+            <div class="recaptcha-bar">
+              <input type="checkbox" id="robot-check" />
+              <label for="robot-check">I'm not a robot</label>
+              <div class="recaptcha-logo">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path fill="#1a73e8" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+                </svg>
+                <span>reCAPTCHA</span>
+              </div>
+            </div>
+            <div class="recaptcha-card" id="recaptcha-card">
+              <p class="recaptcha-question">How does this image make you feel?</p>
+              <div class="recaptcha-image">
+                <img src="14/4E6C50C3B73D3AA255EB8ACC8D436A4C.png" alt="" />
+              </div>
+              <div class="recaptcha-viewer" id="recaptcha-viewer" hidden>
+                <button type="button" class="recaptcha-viewer-back" id="recaptcha-viewer-back">← 返回</button>
+                <div class="recaptcha-viewer-frame">
+                  <img id="recaptcha-viewer-img" src="" alt="" />
+                </div>
+              </div>
+              <div class="recaptcha-footer">
+                <div class="recaptcha-icons">
+                  <span title="刷新">↻</span>
+                  <span title="音频">🎧</span>
+                  <span title="信息">ⓘ</span>
+                </div>
+                <button type="button" class="btn-verify" id="btn-verify" disabled>VERIFY</button>
+              </div>
+            </div>
+          </div>
+          <div class="polaroid-slot" id="polaroid-slot">
+            <div class="hero-polaroids" id="hero-polaroids" aria-hidden="true" aria-label="拍立得相册">
+              <img src="14/02719AA1AA8ABEA94A6D0980CB410854.png" alt="" class="pp p0" width="234" height="286" tabindex="0" role="button" />
+              <img src="14/4E6C50C3B73D3AA255EB8ACC8D436A4C.png" alt="" class="pp p1" width="234" height="286" tabindex="0" role="button" />
+              <img src="14/8A4E8F5BE523808E17898A8E0C26A459.png" alt="" class="pp p2" width="234" height="286" tabindex="0" role="button" />
+              <img src="14/DA59349231A9936ED892274D400E714C.png" alt="" class="pp p3" width="234" height="286" tabindex="0" role="button" />
+            </div>
+            <p class="polaroid-caption" data-i18n="hero.polaroidCaption">王玥莹 · 511</p>
+          </div>
+        </div>
+
+        <div class="hero-profile">
+          <article class="hero-card" id="hero-card">
+            <div class="hero-card-core">
+              <div class="hero-name-collage">
+                <span class="paper-layer paper-layer--grid" aria-hidden="true"></span>
+                <span class="paper-layer paper-layer--lined" aria-hidden="true"></span>
+                <span class="paper-layer paper-layer--foil" aria-hidden="true"></span>
+                <span class="paper-layer paper-layer--plate" aria-hidden="true"></span>
+                <span class="paper-fix paper-fix--tape" aria-hidden="true"></span>
+                <span class="paper-fix paper-fix--staple" aria-hidden="true"></span>
+                <div class="hero-pixel-field" aria-hidden="true">
+                  <span class="hero-pixel-wrap hero-pixel-wrap--1" style="--d:0s;--dur:4.6s">
+                    <span class="hero-pixel-bubble" data-tail="br"><span class="hero-pixel-bubble-text">JAZZ</span></span>
+                  </span>
+                  <span class="hero-pixel-wrap hero-pixel-wrap--2" style="--d:0.7s;--dur:3.8s">
+                    <span class="hero-pixel-bubble" data-tail="bl"><span class="hero-pixel-bubble-text">VLOG</span></span>
+                  </span>
+                  <span class="hero-pixel-wrap hero-pixel-wrap--3" style="--d:1.5s;--dur:5.2s">
+                    <span class="hero-pixel-bubble" data-tail="tr"><span class="hero-pixel-bubble-text">BLOGER</span></span>
+                  </span>
+                  <span class="hero-pixel-wrap hero-pixel-wrap--4" style="--d:0.2s;--dur:4.1s">
+                    <span class="hero-pixel-bubble" data-tail="tl"><span class="hero-pixel-bubble-text">摄像</span></span>
+                  </span>
+                  <span class="hero-pixel-wrap hero-pixel-wrap--5" style="--d:2.1s;--dur:3.5s">
+                    <span class="hero-pixel-bubble" data-tail="tr"><span class="hero-pixel-bubble-text">羽毛球</span></span>
+                  </span>
+                  <span class="hero-pixel-wrap hero-pixel-wrap--6" style="--d:1s;--dur:4.8s">
+                    <span class="hero-pixel-bubble" data-tail="tl"><span class="hero-pixel-bubble-text">手写·手账</span></span>
+                  </span>
+                </div>
+                <h1 class="hero-spray-title">
+                  <span class="hero-spray-text" data-i18n="hero.name">Welcome to 511's World</span>
+                  <span class="hero-spray-star" aria-hidden="true">★</span>
+                </h1>
+              </div>
+              <div class="hero-role-row" aria-live="polite">
+                <span class="hero-role-prefix">511 |</span>
+                <span class="hero-role-window">
+                  <span class="hero-role-track" id="hero-role-track"></span>
+                </span>
+              </div>
+              <div class="hero-scroll-search" id="hero-scroll-search">
+                <span class="scroll-search-cap scroll-search-cap--l" aria-hidden="true"></span>
+                <div class="scroll-search-paper">
+                  <label class="scroll-search-trigger" for="hero-search-input">
+                    <svg class="scroll-search-icon" viewBox="0 0 48 48" aria-hidden="true">
+                      <path class="scroll-search-lens" d="M12 20 C12 14, 17 9, 22 9 C28 9, 33 14, 33 20 C33 27, 28 32, 22 32 C16 32, 12 26, 12 20 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                      <path class="scroll-search-handle" d="M31 28 L41 39" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" />
+                      <path d="M16 15 Q22 11 29 16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" opacity="0.5" />
+                      <path d="M14 24 Q21 27 28 23" fill="none" stroke="currentColor" stroke-width="0.9" stroke-linecap="round" opacity="0.35" />
+                    </svg>
+                    <span class="visually-hidden" data-i18n="hero.searchLabel">搜索</span>
+                  </label>
+                  <input
+                    type="search"
+                    id="hero-search-input"
+                    class="scroll-search-input"
+                    data-i18n-placeholder="hero.searchPlaceholder"
+                    placeholder="搜索技能、经历、项目…"
+                    autocomplete="off"
+                  />
+                </div>
+                <span class="scroll-search-cap scroll-search-cap--r" aria-hidden="true"></span>
+                <div class="scroll-search-results" id="hero-search-results" role="listbox" aria-label="搜索结果"></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="hero-directory-stack is-visible" id="hero-directory-stack">
+        <div class="hero-pixel-music" id="hero-pixel-music">
+          <div class="px-music" id="px-music">
+            <header class="px-music-header">
+              <span class="px-music-led" id="px-music-led" aria-hidden="true"></span>
+              <span class="px-music-brand">511 · PIXEL WALKMAN</span>
+              <span class="px-music-lcd-tag" id="px-music-lcd-tag" data-i18n="music.lcdStop">STOP</span>
+            </header>
+            <div class="px-music-screen">
+              <button type="button" class="px-music-cover-btn" id="px-music-cover-btn" aria-label="播放音乐">
+                <img
+                  class="px-music-cover"
+                  src="1784dfb5e8b63320a8d1e3e4be584f03_720.png"
+                  alt=""
+                  width="120"
+                  height="120"
+                />
+                <span class="px-music-cover-veil" aria-hidden="true"></span>
+                <span class="px-music-play-icon" id="px-music-play-icon" aria-hidden="true">▶</span>
+              </button>
+              <div class="px-music-info">
+                <p class="px-music-track" id="px-music-track-label" data-i18n="music.trackTitle">ATTENTION</p>
+                <div class="px-music-eq" id="px-music-eq" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span>
+                </div>
+                <p class="px-music-time" id="px-music-time">0:00 / 0:00</p>
+              </div>
+            </div>
+            <div class="px-music-controls">
+              <button type="button" class="px-music-btn px-music-btn--prev" id="px-music-prev" disabled aria-label="上一首">◀</button>
+              <button type="button" class="px-music-btn px-music-btn--play" id="px-music-play" aria-label="播放">
+                <span class="px-music-btn-play">▶</span>
+                <span class="px-music-btn-pause" hidden>❚❚</span>
+              </button>
+              <button type="button" class="px-music-btn px-music-btn--next" id="px-music-next" disabled aria-label="下一首">▶</button>
+            </div>
+            <audio id="px-music-audio" preload="none"></audio>
+          </div>
+        </div>
+
+      <aside id="nav-hub" class="hero-directory" aria-label="全站目录">
+        <article class="nj-player" id="nav-directory-paper">
+          <header class="nj-player-bar">
+            <span class="nj-led" aria-hidden="true"></span>
+            <h2 class="nj-player-title" data-i18n="dir.menuTitle">511 // TRACKLIST</h2>
+            <span class="nj-player-lcd" data-i18n="dir.lcd">▶ READY</span>
+          </header>
+          <nav class="nj-tracklist" id="nav-directory-list" aria-label="页面目录"></nav>
+          <footer class="nj-player-footer" aria-hidden="true">
+            <span>SHUF</span><span>REP</span><span>≡</span>
+          </footer>
+        </article>
+      </aside>
+      </div>
+    </section>
+
+    <section id="profile" class="profile-section">
+      <div class="container">
+        <h2 class="section-title profile-section-title" data-i18n="section.profile">个人简介</h2>
+        <p class="section-lead" data-i18n="profile.lead">大连理工大学 · 产品与增长探索 · 预备党员</p>
+        <div class="profile-collage" id="profile-collage">
+          <div class="profile-visual" id="profile-visual">
+            <div class="profile-visual-main" id="profile-visual-main">
+            <div class="profile-photo-widget" id="profile-photo-widget">
+              <button type="button" class="profile-pixel-arrow profile-pixel-arrow--prev" id="profile-carousel-prev" aria-label="上一张">
+                <span class="profile-pixel-arrow-icon" aria-hidden="true">◀</span>
+              </button>
+              <div class="profile-photo-popup">
+                <div class="profile-photo-popup-titlebar">
+                  <span class="profile-photo-popup-title" data-i18n="profile.imgViewer">生活相册</span>
+                </div>
+                <button type="button" class="profile-photo-popup-frame" id="profile-photo-view" aria-label="点击放大查看">
+                  <div class="profile-photo-stack" id="profile-photo-stack">
+                    <img class="profile-photo is-active" src="1/69b84033c6cd81f3c015a46c90f8f191.png" alt="王玥莹" data-idx="0" width="600" height="800" />
+                    <img class="profile-photo" src="1/6a35b980b8a4e121dca5c1257de04061.png" alt="" data-idx="1" width="600" height="800" hidden />
+                    <img class="profile-photo" src="1/a5cee1dbe74acf23bcea99e6431706b0.png" alt="" data-idx="2" width="600" height="800" hidden />
+                    <img class="profile-photo" src="1/b3968ace9d08616ec8ab451f7809c51a.png" alt="" data-idx="3" width="600" height="800" hidden />
+                  </div>
+                </button>
+                <div class="profile-photo-popup-footer">
+                  <span class="profile-photo-counter" id="profile-photo-counter">01 / 04</span>
+                </div>
+                <button type="button" class="profile-folder-dock profile-folder-dock--close-restore" id="profile-win-restore" hidden aria-label="恢复简介">
+                  <span class="profile-restore-folder profile-restore-folder--xs" aria-hidden="true"></span>
+                </button>
+              </div>
+              <button type="button" class="profile-pixel-arrow profile-pixel-arrow--next" id="profile-carousel-next" aria-label="下一张">
+                <span class="profile-pixel-arrow-icon" aria-hidden="true">▶</span>
+              </button>
+            </div>
+            <p class="profile-photo-hint" data-i18n="profile.zoomHint">点击照片放大</p>
+            <div class="profile-dots" id="profile-dots" role="tablist" aria-label="照片切换"></div>
+            </div>
+            <button type="button" class="profile-folder-dock profile-folder-dock--photo" id="profile-photo-restore" hidden aria-label="恢复照片">
+              <span class="profile-restore-folder profile-restore-folder--sm" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div class="profile-win-stack" id="profile-win-stack">
+            <div class="profile-win-back-collage" aria-hidden="true">
+              <div class="profile-back-deco-slot profile-back-deco-slot--bl">
+                <img class="profile-back-deco" src="31/8FE24B4E3126B3AF0CB4F6180322CE20.png" alt="" />
+              </div>
+              <div class="profile-back-deco-slot profile-back-deco-slot--br">
+                <img class="profile-back-deco" src="31/1F5E6FE2255E8AC90EC151EFC41EF88D.png" alt="" />
+              </div>
+            </div>
+          <div class="profile-win" id="profile-win" role="region" aria-label="个人资料详情">
+            <div class="profile-win-titlebar">
+              <span class="profile-win-icon" aria-hidden="true">◆</span>
+              <span class="profile-win-title" data-i18n="profile.winTitle">个人档案</span>
+              <div class="profile-win-chrome">
+                <button type="button" class="profile-win-chrome-btn" id="profile-win-minimize" aria-label="缩小">_</button>
+                <button type="button" class="profile-win-chrome-btn" id="profile-win-maximize" aria-label="放大内容">□</button>
+                <button type="button" class="profile-win-chrome-btn profile-win-chrome-btn--close" id="profile-win-close" aria-label="关闭简介">×</button>
+              </div>
+            </div>
+            <div class="profile-win-main" id="profile-win-main">
+            <div class="profile-win-client">
+              <p class="profile-win-cmd" aria-hidden="true">&gt; LOAD USER_PROFILE… OK</p>
+              <h3 class="profile-name" data-i18n="profile.name">王玥莹</h3>
+              <div class="profile-lines">
+                <p class="profile-msg">
+                  <span class="profile-label" data-i18n="label.party">PARTY</span>
+                  <span class="profile-sep">:</span>
+                  <span data-i18n="profile.party">预备党员</span>
+                </p>
+                <p class="profile-msg">
+                  <span class="profile-label" data-i18n="label.school">SCHOOL</span>
+                  <span class="profile-sep">:</span>
+                  <span data-i18n="profile.school">大连理工大学</span>
+                </p>
+                <p class="profile-msg">
+                  <span class="profile-label">MAIL</span>
+                  <span class="profile-sep">:</span>
+                  <a href="mailto:yueying511@outlook.com">yueying511@outlook.com</a>
+                </p>
+                <p class="profile-msg">
+                  <span class="profile-label">TEL</span>
+                  <span class="profile-sep">:</span>
+                  <a href="tel:13574091181">13574091181</a>
+                </p>
+              </div>
+              <p class="profile-blurb" data-i18n="profile.blurb" data-i18n-typewriter>热爱把想法做成可触摸的体验，也在校园与实习里持续记录成长。</p>
+            </div>
+            <div class="profile-win-status">
+              <span>511's World</span>
+              <span data-i18n="profile.winStatus">连接正常</span>
+            </div>
+            </div>
+            <button type="button" class="profile-folder-dock profile-folder-dock--info" id="profile-info-restore" hidden aria-label="恢复简介">
+              <span class="profile-restore-folder" aria-hidden="true"></span>
+              <span class="profile-folder-label" data-i18n="profile.folderLabel">王玥莹的文件夹</span>
+            </button>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="projects-section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="section.projects">学术项目经历</h2>
+        <p class="section-lead" data-i18n="projects.lead">从材料研发到系统落地 —— 四段跨学科探索</p>
+        <div class="project-stage" id="project-stage">
+          <div class="proj-toolbar">
+            <div class="proj-view-toggle" role="tablist" aria-label="项目视图切换">
+              <button type="button" class="proj-view-btn is-active" id="project-view-grid" data-view="grid" role="tab" aria-selected="true" aria-controls="project-grid" data-i18n-aria="projects.viewGridAria">
+                <svg class="proj-view-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="5" width="3" height="3" fill="currentColor"/><rect x="5" y="5" width="3" height="3" fill="currentColor"/><rect x="9" y="5" width="3" height="3" fill="currentColor"/><rect x="13" y="5" width="2" height="3" fill="currentColor"/></svg>
+              </button>
+              <button type="button" class="proj-view-btn" id="project-view-timeline" data-view="timeline" role="tab" aria-selected="false" aria-controls="project-timeline" data-i18n-aria="projects.viewTimelineAria">
+                <svg class="proj-view-icon" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="2" fill="currentColor"/><rect x="2" y="6" width="12" height="2" fill="currentColor"/><rect x="2" y="10" width="12" height="2" fill="currentColor"/><rect x="2" y="14" width="12" height="1" fill="currentColor"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="proj-grid-view" id="project-grid" role="tabpanel" aria-labelledby="project-view-grid"></div>
+          <div class="proj-timeline-view" id="project-timeline" role="tabpanel" aria-labelledby="project-view-timeline" hidden></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="content" class="content-section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="section.content">校园自媒体</h2>
+        <p class="section-lead" data-i18n="content.lead">独立运营微博与小红书，用内容连接校园生活</p>
+        <div class="content-split">
+          <div class="content-left-stage">
+            <div class="content-stage-bg" aria-hidden="true">
+              <img class="content-stage-deco content-stage-deco--stars" src="blue/22689D17DF3BA43AB7A0E8F243260DF1.png" alt="" decoding="async" />
+              <img class="content-stage-deco content-stage-deco--card" src="blue/FC32EFE12DB43E81EFC25804E835B5D6.png" alt="" decoding="async" />
+              <img class="content-stage-deco content-stage-deco--tape" src="blue/9F14CF774B9D0EBC2BE72610D5E0CF38.png" alt="" decoding="async" />
+              <img class="content-stage-deco content-stage-deco--bl" src="blue/A787B9C24E6B654C64E1DCEDC341D568.png" alt="" decoding="async" />
+              <img class="content-stage-deco content-stage-deco--dot" src="blue/F98F1D2FA7E55DCA9BF647753735BC03.png" alt="" decoding="async" />
+            </div>
+            <div class="content-collage-bg" id="content-teen-collage" aria-hidden="true">
+              <figure class="content-collage-piece content-collage-piece--hero">
+                <img class="content-collage-img" data-teen-slot="hero" alt="" width="640" height="400" decoding="async" />
+              </figure>
+              <figure class="content-collage-piece content-collage-piece--tl">
+                <img class="content-collage-img" data-teen-slot="tl" alt="" width="280" height="210" decoding="async" />
+              </figure>
+              <figure class="content-collage-piece content-collage-piece--tr">
+                <img class="content-collage-img" data-teen-slot="tr" alt="" width="220" height="220" decoding="async" />
+              </figure>
+              <figure class="content-collage-piece content-collage-piece--br">
+                <img class="content-collage-img" data-teen-slot="br" alt="" width="200" height="250" decoding="async" />
+              </figure>
+              <div class="content-collage-thumbs" id="content-teen-thumbs" aria-hidden="true"></div>
+            </div>
+            <div class="content-left-front">
+              <div class="content-stats-card" id="content-stats"></div>
+              <img class="content-stats-cam" src="blue/57F5ED3B5FF26872DC17E3C905953BC9.png" alt="" decoding="async" aria-hidden="true" />
+            </div>
+          </div>
+          <div class="phone-stage">
+            <div class="phone-scale-wrap">
+            <div class="phone-checker" aria-hidden="true"></div>
+            <div class="phone-chrome">
+              <div class="phone-screen-wrap">
+                <div class="phone-island" aria-hidden="true">
+                  <span class="phone-island-dot"></span>
+                  <span class="phone-island-cam"></span>
+                </div>
+                <div class="phone-burst" id="phone-burst" aria-hidden="true"></div>
+                <div class="phone-screen" id="phone-feed"></div>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="media-house" id="media-house" role="button" tabindex="0" aria-expanded="false">
+          <div class="media-nook">
+            <div class="media-nook__stack">
+              <div class="media-nook__polaroid media-nook__polaroid--back" aria-hidden="true"></div>
+              <article class="media-nook__polaroid media-nook__polaroid--main">
+                <div class="media-nook__polaroid-inner">
+                  <img class="media-nook__logo" src="1BAD5B55F8E174CF247C787C73512956.png" alt="" decoding="async" />
+                </div>
+                <p class="house-title" data-i18n="house.label">发现更多我</p>
+                <p class="house-logos" data-i18n="house.platforms">微博 · 小红书 · 抖音</p>
+              </article>
+              <img class="media-nook__tape" src="png/999CA092A2BAB062EAC478BAA8A09FC5.png" alt="" decoding="async" aria-hidden="true" />
+            </div>
+          </div>
+          <div class="house-unfold" id="house-unfold">
+            <p class="unfold-welcome" data-i18n="house.welcome">欢迎来我的自媒体小窝 ✨</p>
+            <div class="unfold-cards">
+              <a href="https://weibo.com/u/5747186409" target="_blank" rel="noopener" class="unfold-card">@屿源氿晞</a>
+              <a href="https://www.xiaohongshu.com/user/profile/6752b7b5000000001d02d6bc" target="_blank" rel="noopener" class="unfold-card">@511号小宇宙</a>
+              <a href="https://www.douyin.com/user/MS4wLjABAAAAOgsevlJVFgKSXtJNrZdyj8arcmWHlK72FhKcwm3CWFQ?from_tab_name=main&amp;relation=0&amp;vid=7493359794934320422" target="_blank" rel="noopener" class="unfold-card" data-i18n="house.douyin">抖音</a>
+              <a href="https://xhslink.com/m/560DuMAAljN" target="_blank" rel="noopener" class="unfold-card">@然酱</a>
+            </div>
+          </div>
+        </div>
+        <div class="shop-computer-stage" id="shop-computer-stage">
+          <h3 class="shop-computer-heading" data-i18n="shop.heading">我的小店实践</h3>
+          <div class="shop-computer" id="shop-computer">
+            <div class="shop-computer__bezel">
+              <div class="shop-computer__camera" aria-hidden="true"></div>
+              <div class="shop-computer__screen" id="shop-screen">
+                <header class="shop-screen__toolbar">
+                  <button type="button" class="shop-screen__back" id="shop-back-btn" hidden data-i18n-aria="shop.backAria">←</button>
+                  <span class="shop-screen__brand" data-i18n="shop.brand">511's Shop</span>
+                  <nav class="shop-screen__nav" aria-label="Shop navigation">
+                    <button type="button" class="shop-nav-btn is-active" data-shop-view="catalog" data-i18n="shop.navCatalog">商品</button>
+                    <button type="button" class="shop-nav-btn" data-shop-view="cart">
+                      <span data-i18n="shop.navCart">购物车</span>
+                      <span class="shop-nav-badge" id="shop-cart-count">0</span>
+                    </button>
+                    <button type="button" class="shop-nav-btn" data-shop-view="fav">
+                      <span data-i18n="shop.navFav">收藏</span>
+                      <span class="shop-nav-badge" id="shop-fav-count">0</span>
+                    </button>
+                  </nav>
+                </header>
+                <div class="shop-screen__body" id="shop-screen-body"></div>
+              </div>
+            </div>
+            <div class="shop-computer__base" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="internship" class="intern-section">
+      <div class="container">
+        <h2 class="section-title" data-i18n="section.internship">实习经历</h2>
+        <p class="section-lead" data-i18n="intern.lead">去哪儿网 · 用户增长运营</p>
+        <div class="intern-scene" id="intern-scene">
+          <div class="intern-menu" id="intern-menu">
+            <button type="button" class="intern-cover-btn" id="intern-cover" aria-expanded="false" aria-controls="intern-spread">
+              <div class="intern-case">
+                <div class="intern-case__spine" aria-hidden="true"></div>
+                <div class="intern-case__front">
+                  <div class="intern-case__plastic">
+                    <div class="intern-case__insert">
+                      <img class="intern-case__art" src="22/864315a6bcf02f37f81db5e5da7b2e81.png" alt="" />
+                      <div class="intern-case__art-veil" aria-hidden="true"></div>
+                    </div>
+                    <div class="intern-case__disc-wrap" aria-hidden="true">
+                      <div class="intern-case__disc"></div>
+                      <span class="intern-case__note intern-case__note--1">♪</span>
+                      <span class="intern-case__note intern-case__note--2">♫</span>
+                      <span class="intern-case__note intern-case__note--3">♩</span>
+                      <span class="intern-case__note intern-case__note--4">♪</span>
+                    </div>
+                    <div class="intern-case__shine" aria-hidden="true"></div>
+                    <div class="intern-case__glare" aria-hidden="true"></div>
+                  </div>
+                  <div class="intern-case__label">
+                    <h3 data-i18n="intern.coverEn">Qunar.com Internship</h3>
+                    <p class="intern-case__zh" data-i18n="intern.coverZh">实习经历</p>
+                    <span class="intern-case__hint" data-i18n="intern.openHint">点击展开 →</span>
+                  </div>
+                </div>
+              </div>
+            </button>
+            <button type="button" class="intern-close" id="intern-close" aria-label="关闭">×</button>
+            <div class="intern-spread" id="intern-spread" role="region" aria-label="实习详情">
+              <article class="intern-col intern-col-left">
+                <div class="intern-photo-collage">
+                  <figure class="intern-photo-piece intern-photo-piece--back">
+                    <img src="6/图片3.jpg" alt="" loading="lazy" decoding="async" />
+                  </figure>
+                  <figure class="intern-photo-piece intern-photo-piece--mid">
+                    <img src="6/图片4.jpg" alt="" loading="lazy" decoding="async" />
+                  </figure>
+                  <figure class="intern-photo-piece intern-photo-piece--front">
+                    <img src="6/D7316D2037A1C1909D1C9FD83A77E1D6.png" alt="去哪儿网实习" loading="lazy" decoding="async" />
+                  </figure>
+                  <img class="intern-photo-tape intern-photo-tape--star" src="png/999CA092A2BAB062EAC478BAA8A09FC5.png" alt="" decoding="async" />
+                  <img class="intern-photo-tape intern-photo-tape--dot" src="png/E1D2747D26FC6F523FB3ABE453BFAA1F.png" alt="" decoding="async" />
+                </div>
+                <div class="intern-left-meta">
+                  <h3 class="intern-panel-title" data-i18n="intern.panelTitle">去哪儿网 | 用户增长运营实习生</h3>
+                  <p class="intern-panel-date" data-i18n="intern.period">2025.07 - 2025.08</p>
+                  <div class="intern-tag-stack" id="intern-tags"></div>
+                </div>
+              </article>
+              <article class="intern-col intern-col-mid">
+                <header class="intern-section-head" data-i18n="intern.dutiesLabel">核心职责</header>
+                <div class="intern-blocks" id="intern-duties"></div>
+                <header class="intern-section-head intern-section-head--spaced" data-i18n="intern.statsLabel">核心成果</header>
+                <div class="intern-stats-sheet">
+                  <ul id="intern-stats" class="intern-stats-list"></ul>
+                </div>
+                <blockquote class="intern-summary-hand" id="intern-summary-hand" data-i18n="intern.summary" data-i18n-typewriter aria-live="polite"></blockquote>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="abroad" class="abroad-section section-anchor">
+      <div class="container">
+        <h2 class="section-title" data-i18n="section.abroad">国际交流</h2>
+        <p class="section-lead" data-i18n="abroad.lead">昆士兰科技大学 · 工程学术交流 · 2026.01</p>
+        <div class="abroad-editorial">
+          <figure class="abroad-hero">
+            <div class="abroad-hero__frame">
+              <img id="abroad-hero-img" src="" alt="" decoding="async" />
+            </div>
+            <div class="abroad-hero__wave" aria-hidden="true"></div>
+            <span class="abroad-hero__heart abroad-hero__heart--1" aria-hidden="true">♥</span>
+            <span class="abroad-hero__heart abroad-hero__heart--2" aria-hidden="true">♥</span>
+          </figure>
+          <div class="abroad-body">
+            <aside class="abroad-nav" aria-label="Exchange navigation">
+              <p class="abroad-nav__eyebrow" data-i18n="abroad.navEyebrow">— 交流纪事</p>
+              <ul class="abroad-nav__list">
+                <li class="is-active" data-i18n="abroad.navQut">QUT</li>
+                <li data-i18n="abroad.navEng">工程学术交流</li>
+                <li data-i18n="abroad.navDate">2026.01</li>
+              </ul>
+              <div class="abroad-side">
+                <div class="abroad-side__bar" aria-hidden="true"></div>
+                <span class="abroad-side__wire" aria-hidden="true">♡</span>
+                <figure class="abroad-side__photo">
+                  <img id="abroad-side-img" src="" alt="" decoding="async" />
+                </figure>
+                <p class="abroad-side__badge" data-i18n="abroad.sideBadge">拓宽国际视野</p>
+              </div>
+            </aside>
+            <div class="abroad-deck-wrap">
+              <div class="abroad-deck-scene">
+                <div class="abroad-deck" id="abroad-deck" aria-live="polite"></div>
+              </div>
+              <div class="abroad-deck-meta">
+                <button type="button" class="abroad-deck-next" id="abroad-deck-next" data-i18n-aria="abroad.deckNextAria">
+                  <span aria-hidden="true">→</span>
+                </button>
+                <div class="abroad-deck-meta__info">
+                  <span class="abroad-deck-meta__title" data-i18n="abroad.deckTitle">QUT EXCHANGE</span>
+                  <span class="abroad-deck-meta__date" data-i18n="abroad.deckDate">2026.01</span>
+                  <span class="abroad-deck-meta__count" id="abroad-deck-count">7 张影像</span>
+                </div>
+              </div>
+              <p class="abroad-deck-hint" data-i18n="abroad.deckHint">点击箭头切换 · 点击卡片放大</p>
+            </div>
+            <article class="abroad-story">
+              <h3 class="abroad-story__title" data-i18n="abroad.storyTitle">PROJECT</h3>
+              <p class="abroad-story__lead" id="abroad-story-lead" data-i18n="abroad.storyLead" data-i18n-typewriter>2026年1月，赴昆士兰科技大学开展工程学术交流。从课堂讨论到实验室协作，完成系统化的问题拆解、英文汇报与跨文化团队合作训练。</p>
+              <dl class="abroad-story__meta">
+                <div>
+                  <dt data-i18n="abroad.timeLabel">时间</dt>
+                  <dd data-i18n="abroad.timeValue">2026.01.01 – 2026.01.31</dd>
+                </div>
+                <div>
+                  <dt data-i18n="abroad.fieldLabel">领域</dt>
+                  <dd data-i18n="abroad.fieldValue">Engineering</dd>
+                </div>
+                <div>
+                  <dt data-i18n="abroad.statusLabel">状态</dt>
+                  <dd data-i18n="abroad.statusValue">✅ 已完成</dd>
+                </div>
+              </dl>
+              <h4 class="abroad-story__gains-title" data-i18n="abroad.gainsTitle">能力收获</h4>
+              <ul class="abroad-story__gains">
+                <li data-i18n="abroad.gain1">✅ 系统化问题拆解与数据分析</li>
+                <li data-i18n="abroad.gain2">✅ 英语学术写作与口头汇报</li>
+                <li data-i18n="abroad.gain3">✅ 跨文化团队协作</li>
+                <li data-i18n="abroad.gain4">✅ 国际前沿工程研究范式</li>
+              </ul>
+              <span class="abroad-story__mascot" aria-hidden="true">🐰</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="student" class="student-section">
+      <div class="container container-student">
+        <h2 class="section-title" data-i18n="section.student">学生工作</h2>
+        <p class="section-lead student-hint" data-i18n="student.hint">点击手牌，了解我在校园里的角色与故事</p>
+        <div class="member-fan" id="member-fan" aria-label="学生工作手牌"></div>
+        <div class="member-labels" id="member-labels" aria-label="角色标签"></div>
+      </div>
+    </section>
+
+    <section id="skills" class="skills-section capability-section journal-page section-anchor">
+      <div class="container">
+        <h2 class="section-title" data-i18n="section.skills">个人能力</h2>
+        <div class="skill-stack-grid" id="capability-todo-grid" aria-label="个人能力标签"></div>
+      </div>
+      <div class="capabilities-footer-band">
+        <p class="capabilities-footer" data-i18n="capabilities.footer">学习一直在路上，探索永无止境...</p>
+      </div>
+    </section>
+
+    <section id="contact" class="footer-section section-anchor">
+      <div class="container container-partner">
+        <div class="partner-stage">
+          <div class="partner-bar">
+            <div class="partner-bar__brand">
+              <span class="partner-avatar" aria-hidden="true">5</span>
+              <div class="partner-bar__identity">
+                <p class="partner-bar__name" data-i18n="partner.name">WANG YUEYING</p>
+                <p class="partner-bar__tag" data-i18n="partner.tag">511'S WORLD</p>
+              </div>
+            </div>
+            <button type="button" class="partner-bar__link partner-bar__link--email" data-copy="email" data-i18n-aria="contact.copyEmailAria">
+              yueying511@outlook.com
+            </button>
+            <a class="partner-bar__link partner-bar__link--phone" href="tel:13574091181">13574091181</a>
+            <div class="partner-bar__actions">
+              <a class="partner-social" href="https://www.xiaohongshu.com/user/profile/6752b7b5000000001d02d6bc" target="_blank" rel="noopener" aria-label="小红书">📕</a>
+              <a class="partner-social" href="https://weibo.com/u/5747186409" target="_blank" rel="noopener" aria-label="微博">🧣</a>
+              <a class="partner-social" href="https://www.douyin.com/user/MS4wLjABAAAAOgsevlJVFgKSXtJNrZdyj8arcmWHlK72FhKcwm3CWFQ?from_tab_name=main&amp;relation=0&amp;vid=7493359794934320422" target="_blank" rel="noopener" data-i18n-aria="social.douyinAria">🎵</a>
+            </div>
+          </div>
+          <p class="partner-beach-line" data-i18n="partner.beach">找不到我就是在海滩偷薯条~</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p data-i18n="footer.copy">© 2026 王玥莹 · 511's World</p>
+  </footer>
+
+  <div class="student-modal" id="student-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" id="modal-card"></div>
+  </div>
+
+  <div class="proj-modal" id="project-modal" hidden aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+    <div class="proj-modal__backdrop" id="project-modal-backdrop"></div>
+    <div class="proj-modal__panel" id="project-modal-panel"></div>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="照片预览">
+    <button type="button" class="lightbox-close" id="lightbox-close" aria-label="关闭">✕</button>
+    <figure class="lightbox-polaroid" id="lightbox-polaroid">
+      <img id="lightbox-img" src="" alt="" />
+    </figure>
+  </div>
+
+  <script src="assets/y2k.js"></script>
+</body>
+</html>

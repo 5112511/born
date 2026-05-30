@@ -1,0 +1,8 @@
+{
+  "name": "y2k-scripts",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "pngjs": "^7.0.0"
+  }
+}

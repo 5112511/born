@@ -1,0 +1,566 @@
+ **主色调与高级动态背景（核心美感要求）**：
+  摒弃单调死板的线性渐变，采用**“4层叠加的动态治愈系背景”**，营造丰富、透气、有深度的舒适美感：
+  1. **底层（极光流沙渐变）**：使用 CSS Mesh Gradient（网格渐变），将奶油蓝(#E6F3FF)、浅桃粉(#FFF0F5)与暖米色(#FFFDF7)柔和交融。添加极其缓慢的呼吸感流转动画（动画周期 20s），像晨曦的天空一样自然过渡。
+  2. **中层（环境光晕 Ambient Glow）**：在页面两侧和对角线，放置 3-4 个巨大的、带有极高斯模糊（`filter: blur(120px)`）的辅助色光球（浅棕#8B7355、柔金#FFD700，透明度 15%）。光球需随鼠标移动产生极微弱的视差偏移（Parallax），增加页面的空间深度和温暖感。
+  3. **表层（手账纸张纹理）**：全屏覆盖一层透明度仅为 4% 的 SVG 噪点纹理（Noise Texture），配合 `mix-blend-mode: multiply`。这能瞬间消除屏幕的刺眼感，打造出高级的“磨砂纸张”触感，视觉上极度舒适。
+  4. **点缀（治愈系漂浮物）**：半透明的手绘风星星与蝴蝶（纯白或淡金，opacity: 0.3 - 0.6）。使用非线性的贝塞尔曲线（Cubic-bezier）让它们进行不规则的缓慢上下浮动；当用户向下滚动页面时，这些小装饰要有不同速率的视差位移，拒绝生硬的匀速运动。模块1：首屏英雄区（杂志级文艺排版）
+- **布局与空间感**：全屏高度，垂直居中。采用极具呼吸感的“留白”设计。在页面背景层，添加一个极大的、透明度仅为 3% 的无衬线英文字母水印 "PORTFOLIO" 或 "511"，横跨半个屏幕，增加页面的空间纵深感与杂志排版感。
+- **主标题**："Welcome to 511’s World."（颜色#8B7355，字号80px，使用优雅流畅的英文手写体，如 `Caveat` 或 `Playfair Display` 衬线体，拒绝幼态字体）。
+- **旋转文字（副标）**：主标题下方，使用干净的无衬线体（字号20px，字间距加宽 `letter-spacing: 4px`，颜色#8B7355，透明度0.8）。实现优雅的淡入淡出旋转切换（产品经理 · 数据探索者 · 跨专业探索家 · 自媒体博主 · 商业化实践者）。文字两侧辅以极简的细实线（1px solid）作为装饰，拉伸视觉宽度。
+- **核心交互（Gooey-Search 艺术化融入）**：
+  - 在旋转文字下方约 40px 处，居中放置模糊搜索引擎（Gooey-Search）。
+  - **样式重塑**：将其外观优化为“磨砂玻璃质感（Glassmorphism）”，默认状态是一个半透明的优雅胶囊形状（背景 rgba(255,255,255,0.3)，带有 12px 高斯模糊和极细的白色边框）。
+  - **交互**：Hover 或点击时，呈现流体/粘滞（Gooey）的平滑展开动画。搜索框内的 Placeholder 文本为斜体："Search my projects, skills, or stories..."。这既填补了页面空白，又将搜索功能变成了首屏的艺术装置。
+- **高级装饰（摒弃卡通 Emoji）**：
+  - 删除所有 Emoji。替换为 3 个悬浮的“磨砂玻璃几何体”（如：一个空心圆环、一个柔和的波浪形薄片、一个半透明球体）。
+  - 它们在页面四周进行极其缓慢的自转和视差浮动，折射出背景的奶油蓝与浅棕色，营造出“现代艺术展”般的静谧与高级感。
+- **滚动引导（Scroll Indicator）**：屏幕最底部正中央，添加一个极简的细线条滚动提示（一条 1px 的垂直细线，内部有一颗小光点缓慢向下坠落并消散），旁边配以极小的全大写字母 "SCROLL TO EXPLORE"。
+- **过渡交互**：向下滚动时，主标题平滑缩小并移动到顶部导航栏的左侧，Gooey-Search 框则淡出。 模块2：个人简介（文艺撕纸拼贴双卡片）
+- **布局规范**：采用左右等宽的 Flex/Grid 布局（移动端自动转为上下堆叠）。整体呈现出一种“精心排版的手账拼贴（Scrapbook Collage）”美感。
+- **左侧卡片（拍立得相册轮播）**：
+  - **视觉样式**：模拟真实的拍立得/相片纸质感。相片四周带有不规则的白色做旧边框，顶部用一小截半透明的“和纸胶带（Washi Tape，CSS 倾斜矩形+半透明纹理）”贴在背景上。
+  - **图片规范**：固定宽高比（如 4:3），强制使用 `object-fit: cover` 保证照片绝对不变形。
+  - **交互**：底部带有极简的小圆点指示器，支持自动/手动平滑轮播个人照片（间隔5秒）。切换时带有轻微的淡入和缩放（Scale）过渡。
+- **右侧卡片（撕纸手账档案）**：
+  - **撕纸背景（核心）**：摒弃常规的圆角矩形，使用 CSS `mask-image` (SVG 撕纸边缘) 或高质量的撕纸背景图，打造边缘不规则的“撕下的一页手账纸”效果。纸张底色为暖米色（#FFFDF7），带有极淡的纸张纤维噪点。
+  - **阴影细节**：必须使用 `filter: drop-shadow(0 10px 20px rgba(0,0,0,0.05))` 而不是普通的 `box-shadow`，确保阴影完美贴合不规则的撕纸边缘，增强立体真实感。
+  - **信息排版**：
+    - 姓名（王玥莹）使用大号优雅手写体，旁边点缀一个小巧的红色印章或手绘星星。
+    - 基本信息（政治面貌：预备党员 | 学校：大连理工大学 | 邮箱：yueying511@outlook.com | 电话：13574091181）使用干净的无衬线体，行距加宽（`line-height: 1.8`），左侧对齐，像是在信纸上整齐书写。
+  - **特长标签（荧光笔高亮）**：
+    - 标签内容：JAZZ | VLOG | BLOGER | 摄像 | 羽毛球 | 手写·手账。
+    - **样式**：摒弃普通的椭圆按钮，采用“真实荧光笔划过”的视觉效果。通过 CSS `background: linear-gradient(transparent 60%, #FFE4E8 40%)` 实现文字下半部分被粉色/抹茶绿荧光笔覆盖的高亮感。鼠标悬停时，高亮颜色轻微加深。（删掉个人简历） 模块3：学术项目经历（3D翻转手卡 + 左右轮播）
+- **布局与交互规范**：
+  - **单卡居中轮播**：采用单张大卡片居中展示的 Carousel（轮播）布局。两侧隐约露出上一张/下一张卡片的边缘（带半透明和模糊效果），支持鼠标拖拽、左右箭头或手机滑动切换。
+  - **3D翻转交互**：
+    - 卡片右下角固定一个精致的手写体按钮 **"Find More →"**（英文状态）/ **"探索更多 →"**（中文状态），悬停时带有微弱的金色光晕。
+    - 点击该按钮，卡片触发极流畅的 **3D 沿 Y 轴翻转 180 度动画**（使用 `perspective: 1000px` 和 `backface-visibility: hidden` 确保丝滑不穿帮）。
+    - 翻转到背面后，左上角保留一个 **"← Back"** / **"← 返回"** 按钮用于翻回正面。
+  - **字体与图片规范**：
+    - 英文/数字强制使用 `Calibri`，中文使用 `PingFang SC`。
+    - 左侧主图强制使用 `object-fit: cover`，圆角 12px，绝对不允许拉伸变形。
+
+---
+
+### 🗂️ 手卡数据与双语内容（AI 必须完整写入代码，不得省略）
+
+#### 【手卡1：铁卫·电池哨兵】
+- **正面 - 左侧视觉区**：
+  - **主图**：硬件实物特写（图片路径：文件夹2）
+  - **副标（荧光笔高亮）**：
+    - 中文：📄 2篇SCI | 🏆 国赛二等奖/省赛一等奖 | 📝 1项专利
+    - 英文：📄 2 SCI Papers | 🏆 National 2nd / Prov 1st | 📝 1 Patent
+- **正面 - 右侧内容区**：
+  - **标题**：
+    - 中文：铁卫·电池哨兵 | DMC锂电池热失控预警系统
+    - 英文：Iron Guard · Battery Sentry | DMC Lithium Battery Thermal Runaway Early Warning System
+  - **身份与时间**：
+    - 中文：项目负责人 | 2024.09 - 2025.12
+    - 英文：Project Leader | Sep 2024 - Dec 2025
+  - **解决痛点**：
+    - 中文：针对现有DMC气体检测技术成本高、选择性差、响应慢的行业痛点，填补5-50ppm低浓度监测空白。
+    - 英文：Addresses high cost, poor selectivity, and slow response of existing DMC gas detection, filling the 5-50ppm low-concentration monitoring gap.
+  - **核心技术**：
+    - 中文：• NiFe₂O₄纳米材料特异性吸附技术 • STM32双层主控系统 • LoRa+Wi-Fi双模无线传输 • 跨平台IoT可视化监控平台
+    - 英文：• NiFe₂O₄ Nanomaterial Specific Adsorption • STM32 Dual-layer Master Control • LoRa+Wi-Fi Dual-mode Wireless • Cross-platform IoT Visualization
+  - **综合体现（标签）**：跨学科整合 | MOF材料研发 | STM32 | 锂电池安全 (Cross-disciplinary | MOF Materials | STM32 | Battery Safety)
+- **背面 - 深度内容区**：
+  - **核心贡献**：
+    - 中文：主导从材料研发→硬件设计→软件开发→成果转化全流程，带领3人团队完成项目落地。
+    - 英文：Led the entire process from material R&D, hardware design, software development to commercialization, leading a 3-person team to project landing.
+  - **学术成果（论文链接，点击可跳转）**：
+    - [1] Chen Y et al. ACS Applied Nano Materials, 2025 → https://doi.org/10.1021/acsanm.5c02393
+    - [2] Song X Z et al. Inorganic Chemistry Frontiers → https://doi.org/10.1039/d5qi02410b
+
+---
+
+#### 【手卡2：船舶振动预警系统】
+- **正面 - 左侧视觉区**：
+  - **主图**：船舶有限元仿真云图特写
+  - **副标（荧光笔高亮）**：
+    - 中文：📊 50阶模态分析 | 🎯 创新预警体系 | 🏆 院级二等奖
+    - 英文：📊 50-Order Modal Analysis | 🎯 Innovative Warning | 🏆 School 2nd Prize
+- **正面 - 右侧内容区**：
+  - **标题**：
+    - 中文：基于甲板振动响应数据的智能预警系统研究
+    - 英文：Research on Intelligent Early Warning System Based on Deck Vibration Response Data
+  - **身份与时间**：
+    - 中文：独立项目负责人 | 2024.09 - 2026.03
+    - 英文：Independent Project Leader | Sep 2024 - Mar 2026
+  - **一句话总结**：
+    - 中文：独立发起并主导的海洋工程安全项目，构建了"建模-仿真-数据-算法-预警"全链条船舶结构健康监测方案。
+    - 英文：Independently initiated and led marine engineering safety project, building a "modeling-simulation-data-algorithm-warning" full-chain structural health monitoring solution.
+  - **综合体现（标签）**：独立科研 | CAD | Patran | Nastran | Origin (Independent Research | CAD | Patran | Nastran | Origin)
+- **背面 - 深度内容区（关键突破）**：
+  - **关键突破（1D-CNN 交互图示或排版）**：
+    - 中文：
+      1. 精准定位：通过模态分析识别船舶高风险振动区域。
+      2. 数据标准化：搭建包含多工况的振动响应数据库。
+      3. 智能识别：适配1D-CNN实现3类信号自动分类。
+      4. 规范预警：融合行业标准建立二维分级评估体系。
+    - 英文：
+      1. Precise Positioning: Identified high-risk vibration zones via modal analysis.
+      2. Data Standardization: Built a vibration response database covering multiple working conditions.
+      3. Intelligent Recognition: Adapted 1D-CNN for automatic classification of 3 signal types.
+      4. Standardized Warning: Integrated industry standards to establish a 2D hierarchical evaluation system.
+
+---
+
+#### 【手卡3：Punch Out双体无人艇】
+- **正面 - 左侧视觉区**：
+  - **主图**：船体3D渲染图特写（图片路径：文件夹4）
+  - **副标（荧光笔高亮）**：
+    - 中文：⚙️ 双层控制架构 | 📡 100米图传 | 🚢 2026.07下水测试
+    - 英文：⚙️ Dual-layer Control | 📡 100m Video Link | 🚢 July 2026 Water Test
+- **正面 - 右侧内容区**：
+  - **标题**：
+    - 中文：Punch Out 小型双体无人水面艇
+    - 英文：Punch Out Small Twin-Hull Unmanned Surface Vessel
+  - **身份与时间**：
+    - 中文：控制系统负责人 | 2026.02 - 至今
+    - 英文：Control System Leader | Feb 2026 - Present
+  - **一句话总结**：
+    - 中文：跨学科系统工程项目，负责控制系统与视觉传输设计，打造浅水环境智能海洋观测平台。
+    - 英文：Cross-disciplinary systems engineering project, responsible for control system and vision transmission design, creating an intelligent marine observation platform for shallow water.
+  - **综合体现（标签）**：控制系统 | 飞控 | 跨部门协作 | 产品设计 | Xmind (Control System | Flight Control | Cross-dept Collaboration | Product Design | Xmind)
+- **背面 - 深度内容区（关键突破）**：
+  - **关键突破**：
+    - 中文：
+      1. 架构创新："树莓派上层决策+Pixhawk底层执行"分层控制。
+      2. 性能优化：独立图传不占用主控资源，延迟≤300ms。
+      3. 工程思维：全程考虑成本、可靠性与可维护性。
+      4. 模块化设计：支持功能扩展与快速迭代。
+    - 英文：
+      1. Architecture Innovation: "Raspberry Pi upper-level decision + Pixhawk lower-level execution" hierarchical control.
+      2. Performance Optimization: Independent video transmission without occupying main control resources, latency ≤300ms.
+      3. Engineering Mindset: Considered cost, reliability, and maintainability throughout.
+      4. Modular Design: Supports functional expansion and rapid iteration.
+
+---
+
+#### 【手卡4：Pawspective智能项圈】
+- **正面 - 左侧视觉区**：
+  - **主图**：项圈佩戴高清渲染图（图片路径：文件夹5）
+  - **副标（荧光笔高亮）**：
+    - 中文：📷 可拆卸相机 | ❤️ 实时健康监测 | 📍 精准防丢定位
+    - 英文：📷 Detachable Camera | ❤️ Real-time Health | 📍 Precise Anti-lost
+- **正面 - 右侧内容区**：
+  - **标题**：
+    - 中文：Pawspective 一体化智能宠物项圈
+    - 英文：Pawspective Integrated Smart Pet Collar
+  - **身份与时间**：
+    - 中文：项目创始人/CEO | 2026.03 - 至今
+    - 英文：Project Founder/CEO | Mar 2026 - Present
+  - **一句话总结**：
+    - 中文：打造有温度的智能宠物穿戴产品，用科技深化人与宠物的情感联结。
+    - 英文：Creating a warm smart pet wearable, using technology to deepen the emotional connection between humans and pets.
+  - **综合体现（标签）**：战略规划 | 商业模拟 | 领导力 | image2 | CAD (Strategic Planning | Business Simulation | Leadership | image2 | CAD)
+- **背面 - 深度内容区（关键突破）**：
+  - **关键突破**：
+    - 中文：
+      1. 功能创新：首创"安全+健康+社交"三位一体设计。
+      2. 体验优化：可拆卸相机兼顾实用性与内容创作。
+      3. 社会价值：减少宠物走失与流浪动物数量。
+      4. 商业闭环：硬件销售+内容生态双驱动模式。
+    - 英文：
+      1. Functional Innovation: Pioneered "Safety + Health + Social" three-in-one design.
+      2. Experience Optimization: Detachable camera balances utility and content creation.
+      3. Social Value: Reduces lost pets and stray animal populations.
+      4. Business Loop: Dual-driven model of hardware sales + content ecosystem.## 模块4：实习经历（TODO日历风格 - 独立居中模块）
+- **布局规范**：独立居中布局。卡片采用宽屏手账本（A4横版比例）样式，居中呈现，左右留出优雅的呼吸空间。
+- **视觉风格（TODO日历手账风）**：
+  - **卡片外观**：模拟一本精致的“活页TODO日历”。卡片顶部有一排逼真的金属活页圈（CSS 绘制灰色渐变圆环与阴影），卡片背景为带有淡灰色网格线（Grid Lines）的暖米色手账纸张。
+  - **首图规范**：卡片左侧/上方为首图区域（图片路径：文件夹6中的 `D7316D2037A1C1909D1C9FD83A77E1D6`）。强制设置 `width: 100%; height: 240px; object-fit: cover; border-radius: 12px;`，绝对不允许拉伸变形。
+- **双语内容数据（AI 必须完整写入代码）**：
+  - **标题**：
+    - 中文：去哪儿网 | 用户增长运营实习生
+    - 英文：Qunar.com | User Growth Operations Intern
+  - **身份与时间**：
+    - 中文：核心运营成员 | 2025.07 - 2025.08
+    - 英文：Core Operations Member | Jul 2025 - Aug 2025
+  - **核心职责（TODO打勾样式）**：
+    每个职责左侧带有一个手绘风的复古打勾框（Checkbox），悬停时打勾符号（✓）会像手绘一样动态画出：
+    1. **数据驱动增长**：
+       - 中文：分析用户行为，优化转化漏斗
+       - 英文：Data-Driven Growth: Analyzed user behavior and optimized conversion funnels
+    2. **内容运营**：
+       - 中文：打造垂类爆款内容，推动用户拉新
+       - 英文：Content Operations: Created vertical viral content to drive user acquisition
+    3. **流程建设**：
+       - 中文：搭建增长SOP，输出可复用模板
+       - 英文：Process Construction: Built growth SOPs and delivered reusable templates
+  - **成果标签（底部荧光笔高亮）**：
+    用户增长 | 内容运营 | 数据分析 | 流程标准化 (User Growth | Content Operations | Data Analysis | Process Standardization)
+
+---
+
+### 💥 核心交互：【核心成果】粒子迸发特效（严格执行）
+- **触发按钮**：在卡片右下角/正下方，放置一个精致的橙色胶囊按钮 **"【核心成果】"**（中文）/ **"【Core Achievements】"**（英文），带有微弱的呼吸发光效果。
+- **交互特效（点击时触发）**：
+  1. **蓝色粒子爆炸（Canvas Particle Effect）**：以鼠标点击的位置为中心，向外瞬间发射 30-40 个半透明的蓝色与金色微小粒子，带有重力下坠和逐渐淡出的物理衰减效果。
+  2. **5方向玻璃拟态数据框迸发（Framer Motion / CSS Keyframes）**：
+     - 5个精致的玻璃拟态数据框（Glassmorphism Cards，背景 rgba(255,255,255,0.85)，模糊 12px，带 1px 白色边框）以点击点为起点，呈**扇形/五角星方向**平滑飞出，并最终悬浮在主卡片周围。
+     - **飞出方向与延迟（Staggered Delay）**：
+       - **数据框1（向左上方飞出，延迟 0ms）**：
+         - 中文：📈 单人拉新 2000+
+         - 英文：📈 Single-person Acquisition 2000+
+       - **数据框2（向正上方飞出，延迟 100ms）**：
+         - 中文：🎯 核心转化率提升 5%
+         - 英文：🎯 Core Conversion Rate +5%
+       - **数据框3（向右上方飞出，延迟 100ms）**：
+         - 中文：🔥 内容曝光提升 20%
+         - 英文：🔥 Content Exposure +20%
+       - **数据框4（向左下方飞出，延迟 200ms）**：
+         - 中文：✨ 账号涨粉 500+
+         - 英文：✨ Followers +500
+       - **数据框5（向右下方飞出，延迟 200ms）**：
+         - 中文：📋 输出12套可复用模板
+         - 英文：📋 Delivered 12 Reusable Templates
+     - **悬浮微动**：飞出定位后，5个数据框进入极其轻微的上下漂浮状态（浮动幅度 5px，周期不同步），仿佛悬浮在空中的手账贴纸。
+     - **收回机制**：再次点击橙色按钮，或点击页面任意空白处，5个数据框平滑缩回原点并淡出。 模块5：国际交流（左签证 + 右3D魔方）
+- **布局规范**：左右 Flex/Grid 布局。左侧为静态/翻转卡片，右侧为 3D 交互区域。
+- **左侧（护照签证卡片）**：
+  - **正面样式**：高度还原真实的护照签证页排版，背景带有极淡的防伪底纹。
+  - **顶部标题**：昆士兰科技大学 学术交流签证。
+  - **照片位**：左上角/右上角设置一个固定比例的证件照区域（强制 `object-fit: cover`），每次刷新页面时，从文件夹13的8张照片中**随机抽取1张**展示。
+  - **信息栏（整齐排版）**：
+    姓名：王玥莹
+    时间：2026.01.01-2026.01.31
+    领域：Engineering
+    状态：✅ 已完成
+  - **底部印章**：右下角盖有一个逼真的红色倾斜印章："QUT Faculty of Engineering 官方认证"（可使用 CSS `transform: rotate(-15deg)` 和 `mix-blend-mode: multiply` 模拟真实印泥质感）。
+  - **交互（3D翻转）**：点击签证卡片触发 3D 翻转（Flip）。卡片背面展示能力收获：
+    ✅ 系统化问题拆解与数据分析
+    ✅ 英语学术写作与口头汇报
+    ✅ 跨文化团队协作
+    ✅ 国际前沿工程研究范式
+- **右侧（3D照片魔方）**：
+  - **实现逻辑**：使用 CSS 3D Transform 或 Three.js 实现一个可 360° 鼠标拖拽旋转的 3D 立方体。从文件夹13中选取 6 张照片，分别贴在魔方的 6 个面上（强制 `object-fit: cover` 保证照片不变形）。
+  - **交互1（自动旋转）**：无人操作时，魔方在空间中自动、极其缓慢地沿 X/Y 轴旋转。
+  - **交互2（悬停弹出）**：鼠标悬停在魔方的某一面时，魔方暂停旋转，且**该面的照片会沿 Z 轴向外轻微弹出（TranslateZ 增加）**，并带有发光阴影，增强 3D 空间感。
+  - **交互3（点击放大）**：点击魔方上弹出的任意一张照片，触发 Lightbox（图片放大镜）效果，在屏幕中央全屏/放大查看该照片的高清大图，背景变暗加模糊，点击背景即可关闭。## 模块6：学生工作（神秘占卜扇形牌组 - 核心视觉焦点）
+
+- **视觉灵感与布局（参考上传的扇形卡片截图）**：
+  - **扇形牌组（Fan-shaped Deck）**：摒弃死板的网格。6张卡片像“手握一叠塔罗牌”一样，在屏幕中央呈优雅的弧形扇面排开。
+  - **排布算法**：利用 CSS Transform，6张卡片分别设置不同的旋转角度与位移（例如从左到右旋转角度依次为：-25°, -15°, -5°, 5°, 15°, 25°，并配合轻微的 Y 轴向下偏移，形成完美的下凹弧线）。
+  - **卡背设计（塔罗占卜风）**：
+    - **边框**：卡背四周带有精致的复古双线金边与神秘几何角饰。
+    - **中心Logo**：正中央绘制一个优雅的手绘风“皇冠Logo”。
+    - **配色**：采用温暖的奶油金渐变（#FFFDF7 → #FFE4E8），完美融入全站色调。
+    - **悬停发光**：当鼠标悬停在某张卡片上时，该卡片轻微向上滑出（Z-index 升至最高），且中心的皇冠 Logo 发出微弱、温暖的金色霓虹光芒（`filter: drop-shadow(0 0 12px #FFD700)`）。
+
+- **核心交互动效**：
+  - **1. 鼠标触及波纹（Ripple Effect）**：当鼠标划过卡片时，以鼠标指针接触点为中心，在卡片表面泛起一层半透明的、向外扩散并逐渐淡出的水波纹效果（可使用 CSS `radial-gradient` 动态计算指针坐标实现）。
+  - **2. 3D 翻转与居中放大（Modal Zoom）**：
+    - 点击任意一张卡片，该卡片平滑地从扇形牌组中“脱离”飞出，移动到屏幕正中央并放大（Scale 1.15）。
+    - 伴随极具沉浸感的 **3D 透视翻转动画**（沿 Y 轴翻转 180°），背景自动变暗并加上高斯模糊（`backdrop-filter: blur(8px)`）。
+    - 翻转后展示卡片正面的详细内容。点击卡片右上角的“关闭”或背景任意处，卡片优雅地翻转并缩回原位。
+  - **3. 缓慢漂浮的泡沫框（Bubble Frames）**：
+    - 扇形牌组下方，错落有致地漂浮着 6 个半透明的“泡沫框”（Glassmorphism 气泡，带 10px 模糊与细白边框）。
+    - **动效**：每个气泡应用独立的 `float-and-sway` 动画，实现**缓慢上下漂浮（translateY: ±10px） + 轻微左右摇摆（translateX: ±5px, rotate: ±2deg）**，模拟真实的物理气泡质感。
+    - 气泡内分别写着 6 个职务名称。点击气泡，同样可以触发对应卡片的飞出翻转。
+
+---
+
+### 🗂️ 6张卡片正面详细内容（AI 必须完整写入代码，中英双语对照）
+
+#### 【卡片1：团委副书记】（图片路径：文件夹7）
+- **基本信息**：
+  - 中文：团委副书记 | 任职时间：2025.09 - 至今
+  - 英文：Deputy Secretary of Youth League Committee | Sep 2025 - Present
+- **核心职责 (Core Responsibilities)**：
+  - 中文：
+    • 统筹全院团学工作，分管科创部与办公室两大核心部门。
+    • 策划组织「思维拓园」「责任培养」等思想引领系列活动。
+    • 负责跨部门协作与资源调配，保障团学体系高效运转。
+  - 英文：
+    • Coordinated college-wide youth league work, overseeing Science & Tech and Office departments.
+    • Planned ideological leadership events such as "Thinking Garden" and "Responsibility Cultivation".
+    • Managed cross-departmental collaboration and resource allocation for efficient operations.
+- **量化成果 (Quantitative Achievements)**：
+  - 中文：
+    • 组织各类主题活动 20+ 场，覆盖全院 80% 以上学生。
+    • 统筹完成 60+ 项行政事务（学时登记/报销/物资管理）。
+    • 推动建立团学工作标准化流程，提升部门协作效率 30%。
+  - 英文：
+    • Organized 20+ theme events, covering over 80% of the college students.
+    • Managed 60+ administrative tasks (hours registration, reimbursement, inventory).
+    • Standardized workflows, boosting departmental collaboration efficiency by 30%.
+- **一句话总结（核心视觉：加粗、手写体、粉金色 #FF8C94）**：
+  - 中文：**以服务为初心，搭建连接学院与学生的桥梁，让团学工作更有温度、更具力量。**
+  - 英文：**With service as our aspiration, we build a bridge between the college and students, making youth league work warmer and more powerful.**
+
+---
+
+#### 【卡片2：学院科创部部长】（图片路径：文件夹8）
+- **基本信息**：
+  - 中文：学院科创部部长 | 任职时间：2024.09 - 2025.09
+  - 英文：Minister of Science & Technology Innovation | Sep 2024 - Sep 2025
+- **核心职责 (Core Responsibilities)**：
+  - 中文：
+    • 搭建学院科创服务体系，打通从入门到参赛的全链路。
+    • 策划组织科创讲座、经验分享会与各类学科竞赛。
+    • 主编《莱院科创手册》，为零基础学生提供一站式指导。
+  - 英文：
+    • Built the college sci-tech service system, smoothing the path from entry to competition.
+    • Planned sci-tech lectures, experience sharing sessions, and academic competitions.
+    • Chief-edited the "DLI Sci-Tech Manual" to provide one-stop guidance for beginners.
+- **量化成果 (Quantitative Achievements)**：
+  - 中文：
+    • 举办 14 场 DLI EXPLORE 科创讲座，累计参与 600+ 人次。
+    • 组织攀登杯报名 350+ 人次，3 支队伍晋级主校区路展。
+    • 承办全国大学生数模竞赛等 3 场校级赛事，收集作品 80+ 份。
+  - 英文：
+    • Hosted 14 "DLI EXPLORE" lectures, attracting over 600+ participants.
+    • Organized 350+ applicants for the "Climbing Cup", with 3 teams advancing to the main campus roadshow.
+    • Hosted 3 university-level contests (e.g., Mathematical Modeling), collecting 80+ submissions.
+- **一句话总结（核心视觉：加粗、手写体、粉金色 #FF8C94）**：
+  - 中文：**打破科创信息壁垒，让每一个有想法的同学都能找到科研的入口。**
+  - 英文：**Breaking down information barriers in innovation, so every aspiring student can find their gateway to research.**
+
+---
+
+#### 【卡片3：校区多媒体工作部副部长】（图片路径：文件夹9）
+- **基本信息**：
+  - 中文：校区多媒体工作部副部长 | 任职时间：2023.09 - 2024.09
+  - 英文：Deputy Minister of Campus Multimedia Department | Sep 2023 - Sep 2024
+- **核心职责 (Core Responsibilities)**：
+  - 中文：
+    • 负责校区所有大型活动的摄影摄像与视觉素材产出。
+    • 管理部门器材库与 500G+ 校园影像素材档案。
+    • 带教 10 名新成员，建立标准化拍摄与后期流程。
+  - 英文：
+    • Responsible for photography, videography, and visual content for all major campus events.
+    • Managed the equipment inventory and a 500GB+ archive of campus media assets.
+    • Mentored 10 new members, establishing standardized shooting and post-production workflows.
+- **量化成果 (Quantitative Achievements)**：
+  - 中文：
+    • 完成校运会、军训、青春歌会等 20+ 场大型活动拍摄。
+    • 产出高质量照片 5000+ 张，视频素材 100+ 小时。
+    • 为学院官网、公众号提供 90% 以上的官方视觉内容。
+  - 英文：
+    • Covered 20+ major events including sports meets, military training, and music festivals.
+    • Produced 5,000+ high-quality photos and 100+ hours of video footage.
+    • Provided over 90% of the official visual content for the college website and WeChat account.
+- **一句话总结（核心视觉：加粗、手写体、粉金色 #FF8C94）**：
+  - 中文：**用镜头定格每一个闪光瞬间，让校园记忆有迹可循。**
+  - 英文：**Capturing every shining moment through the lens, making campus memories traceable.**
+
+---
+
+#### 【卡片4：零舞街舞协会爵士舞副队长】（图片路径：文件夹10）
+- **基本信息**：
+  - 中文：零舞街舞协会爵士舞副队长 | 任职时间：2025.09 - 至今
+  - 英文：Jazz Dance Deputy Leader of Lingwu Street Dance Association | Sep 2025 - Present
+  - **专属交互按钮**：在卡片正面/背面显眼处，添加一个精致的胶囊按钮 **"观看舞蹈视频 / Watch Dance Video 🎬"**，点击在新标签页跳转：`https://v.douyin.com/AEVV8dvETBw`。
+- **核心职责 (Core Responsibilities)**：
+  - 中文：
+    • 负责爵士舞日常教学与团队排练，制定学期训练计划。
+    • 策划组织协会年度专场演出，统筹节目编排与舞台设计。
+    • 代表协会参与校园各类文艺活动，推广街舞文化。
+  - 英文：
+    • Led daily jazz dance teaching and team rehearsals, formulating semester training plans.
+    • Planned the association's annual showcase, coordinating choreography and stage design.
+    • Represented the association in various campus cultural events to promote street dance culture.
+- **量化成果 (Quantitative Achievements)**：
+  - 中文：
+    • 累计参与迎新晚会、莱院晚会等 12 场大型校园演出。
+    • 带领团队完成 2 次协会专场演出，观众累计 500+ 人。
+    • 教授学员 30+ 人，培养出多名能独立登台的舞者。
+  - 英文：
+    • Participated in 12 major campus performances, including orientation and college galas.
+    • Led the team to complete 2 annual showcases, attracting over 500+ audience members.
+    • Taught 30+ students, cultivating several dancers capable of solo stage performances.
+- **一句话总结（核心视觉：加粗、手写体、粉金色 #FF8C94）**：
+  - 中文：**用舞蹈表达自我，用热爱感染他人，让更多人感受到街舞的魅力。**
+  - 英文：**Expressing self through dance, inspiring others with passion, and sharing the charm of street dance.**
+
+---
+
+#### 【卡片5：24级班导生、团建辅导员】（图片路径：文件夹11）
+- **基本信息**：
+  - 中文：24级班导生、团建辅导员 | 任职时间：2024.08 - 至今
+  - 英文：Class Advisor & Team Building Counselor (Class of 2024) | Aug 2024 - Present
+- **核心职责 (Core Responsibilities)**：
+  - 中文：
+    • 全程陪伴新生入学过渡，解答学业与生活中的各类疑问。
+    • 指导班级团建与学风建设，帮助建立班级凝聚力。
+    • 配合辅导员开展思想教育与日常管理工作。
+  - 英文：
+    • Accompanied freshmen through their transition, answering academic and life queries.
+    • Guided class team-building and academic atmosphere, fostering class cohesion.
+    • Assisted counselors in ideological education and daily student management.
+- **量化成果 (Quantitative Achievements)**：
+  - 中文：
+    • 帮助 36 名新生顺利完成从高中到大学的角色转变。
+    • 组织开展破冰、中秋晚会等 10+ 次班级团建活动。
+    • 建立班级学习互助小组，班级平均成绩位列年级前 30%。
+  - 英文：
+    • Helped 36 freshmen smoothly transition from high school to university life.
+    • Organized 10+ class team-building activities, including icebreakers and Mid-Autumn galas.
+    • Established study groups, helping the class average grade rank in the top 30% of the grade.
+- **一句话总结（核心视觉：加粗、手写体、粉金色 #FF8C94）**：
+  - 中文：**做学弟学妹大学路上的第一盏灯，照亮他们前行的方向。**
+  - 英文：**Being the first lamp on the university path for juniors, lighting up the direction of their journey.**
+
+---
+
+#### 【卡片6：班级学习委员】（图片路径：文件夹12）
+- **基本信息**：
+  - 中文：班级学习委员 | 任职时间：2023.09 - 至今
+  - 英文：Class Study Commissioner | Sep 2023 - Present
+- **核心职责 (Core Responsibilities)**：
+  - 中文：
+    • 负责班级日常学习管理，对接任课老师传达教学信息。
+    • 组织学习互助活动，帮助学习困难的同学提升成绩。
+    • 收集整理学习资料，建立班级共享资源库。
+  - 英文：
+    • Managed daily class academics, liaising with professors to convey teaching info.
+    • Organized peer tutoring activities to help struggling classmates improve their grades.
+    • Collected and organized study materials, building a shared class resource library.
+- **量化成果 (Quantitative Achievements)**：
+  - 中文：
+    • 班级连续两年获评校级 "优良学风班" "先进班集体"。
+    • 成功入围 2025 年度校 "优良学风标兵班" 评选。
+    • 组织 MIT 网课学习、四六级单词打卡等活动，班级四级通过率 100%，六级通过率 92%。
+  - 英文：
+    • Class awarded "Excellent Study Style Class" and "Advanced Class Collective" for two consecutive years.
+    • Successfully shortlisted for the 2025 University "Excellent Study Style Model Class" selection.
+    • Organized MIT online courses and CET-4/6 vocabulary check-ins, achieving a 100% pass rate for CET-4 and 92% for CET-6.
+- **一句话总结（核心视觉：加粗、手写体、粉金色 #FF8C94）**：
+  - 中文：**以学风建设为抓手，和同学们一起在求知的路上并肩前行。**
+  - 英文：**With academic atmosphere construction as our focus, walking hand in hand with classmates on the road of seeking knowledge.**## 模块7：内容创作（左侧核心成果 + 右侧模拟手机刷帖 + 底部自媒体小窝）
+
+- **整体布局**：左右两栏 Flex/Grid 布局。左侧为固定展示的玻璃拟态成果卡片（占 40% 宽度）；右侧为一个精致的、立体的智能手机模型框（占 60% 宽度），模拟真实刷小红书的滚动体验。
+
+---
+
+### 📱 左侧：核心成果区（固定展示）
+- **设计风格**：采用与项目手卡统一的**奶油磨砂玻璃拟态卡片**（Glassmorphism，带半透明白边框与微弱投影）。
+- **卡片标题**：📝 校园垂类自媒体博主 / Campus Vertical Media Creator
+- **任职时间**：2020.01 - 2026.05
+- **核心数据展示（大号数字突出 + 进度条/可视化图标）**：
+  - 📊 **双平台累计粉丝**：`5000+` (Dual-Platform Followers)
+  - 💬 **微博转评赞总量**：`3.2万` (Weibo Total Engagement: 32k)
+  - ▶️ **视频累计播放量**：`10.8万` (Video Views: 108k)
+  - 🔥 **爆款内容数量**：`20+篇` (Viral Posts: 20+)
+  - 📈 **笔记观看月均增长率**：`30%` (Monthly Growth Rate: 30%)
+  - *（注：每个数据下方配有一条精致的浅金色/粉色渐变进度条，增强视觉饱满度）*
+- **能力标签 (Tags)**：
+  #内容全链路运营 #用户增长 #数据驱动选题 #视觉内容创作 #社群运营
+  (#Full-Link Operations #User Growth #Data-Driven Topics #Visual Creation #Community Ops)
+- **一句话总结（核心视觉：加粗、手写体、粉金色 #FF8C94）**：
+  - 中文：**独立运营微博、小红书双平台校园账号，从0到1搭建内容体系，用数据驱动内容优化，打造多个校园爆款，沉淀了完整的自媒体运营方法论。**
+  - 英文：**Independently operated campus accounts on Weibo and Xiaohongshu, built content systems from scratch, drove optimization with data, created multiple viral hits, and established a complete media operation methodology.**
+
+---
+
+### 📱 右侧：小红书风格信息流区（手机框内可滚动）
+- **手机模型（Phone Mockup）**：
+  - 绘制一个高逼真的 iPhone 风格手机外壳（带灵动岛、圆角边框、精致的侧边按键阴影）。
+  - 手机屏幕区域设置 `overflow-y: auto`，隐藏滚动条，允许用户在手机框内自由上下滑动浏览帖子。
+- **瀑布流布局规范**：
+  - 手机屏幕内采用 2 列瀑布流（Masonry）布局。卡片宽度自适应，高度随图片比例自动调整。
+  - 间距：16px，上下边距：20px。卡片圆角：12px，阴影：`0 2px 12px rgba(0,0,0,0.08)`。
+  - 悬停效果：鼠标悬停在帖子卡片上时，卡片轻微上浮 4px，阴影加深，且封面图片轻微放大 1.05 倍（`transition: transform 0.3s`）。
+  - 点击效果：点击封面或标题时，卡片产生轻微的按压下沉效果（`scale: 0.98`），随后在新标签页打开对应链接。
+
+#### 💖 核心交互：爆裂粒子点赞特效
+- **默认状态**：爱心图标为线性外框，灰色（#999），尺寸 20px。
+- **点击触发（点赞激活）**：
+  1. **弹性缩放**：爱心瞬间放大至 28px，并伴随轻微的弹性抖动（使用 CSS Keyframes：`scale: 1.0 -> 1.25 -> 0.95 -> 1.0`，时长 200ms，缓动函数 `ease-out`）。
+  2. **颜色填充**：爱心变为实心粉色（#FF6B81）。
+  3. **粒子迸发（Sparkle Effect）**：以爱心为中心，瞬间向四周迸发出 **8 个粉色/金色的半透明微小粒子（圆形或星星状）**。粒子向外扩散 30px-50px，伴随旋转和淡出，在 500ms 内完全消失（使用 JS 动态创建 Canvas 或 DOM 粒子实现）。
+  4. **数字滚动**：右侧的点赞数字平滑滚动 +1，且数字颜色同步变为粉色（时长 300ms）。
+  5. **取消点赞**：再次点击，爱心恢复默认灰色线框，数字平滑 -1。
+
+#### 🗂️ 手机内展示的 6 篇爆款笔记数据（图片在文件夹15中）：
+1. **封面图**：`26C73A6477A8C7416BA8277ADEEC52F2`
+   - 标题：在春天用这句文案拥抱花海🌸
+   - 默认点赞数：1204 | 平台：小红书
+   - 链接：`http://xhslink.com/o/5sssBRHO4t4`
+2. **封面图**：`B8AE40FF7688B81F411836040318EDBA`
+   - 标题：这句话也太适合在澳洲发了📝
+   - 默认点赞数：3402 | 平台：小红书
+   - 链接：`http://xhslink.com/o/1wt2JOgHGWN`
+3. **封面图**：`5984A8BDE05B049FBC4DC3ED3AEFA7A0`
+   - 标题：一篇教你学习笔记到底该怎么记！！
+   - 默认点赞数：5821 | 平台：小红书
+   - 链接：`http://xhslink.com/o/3gfQ9BXZXt`
+4. **封面图**：`B46C919EB805B513AF5D2B56181A5518`
+   - 标题：期末月的大学生战力为1000000%
+   - 默认点赞数：2190 | 平台：小红书
+   - 链接：`http://xhslink.com/o/6SYjHc6aB8C`
+5. **封面图**：`8B088124AAF140B2F57EDA71BF57A901`
+   - 标题：🩶：人生是偶然啊…
+   - 默认点赞数：984 | 平台：小红书
+   - 链接：`http://xhslink.com/o/8z8rE9vd3jo`
+6. **封面图**：`E95DE9C5250C89E07F04621A664918BA`
+   - 标题：不要去环球因为真的很幸福
+   - 默认点赞数：4510 | 平台：小红书
+   - 链接：`http://xhslink.com/o/4VKxONTTD3F`
+
+---
+
+### 🏡 底部：自媒体小窝（“发现更多我”交互组件）
+- **默认状态（精致的小房子）**：
+  - 在内容创作模块下方，居中展示一个手绘插画风格的“小房子”图标，标注文字 **"发现更多我 / Discover More of Me"**。
+  - **烟囱冒泡特效**：小房子的烟囱处，持续、不间断地缓慢冒出 3-5 个半透明的粉色小气泡（Glassmorphism Bubbles）。气泡应用 `@keyframes float-up-fade` 动画，**向上漂浮 40px 的同时逐渐缩小并淡出消失**，形成温馨、治愈的动态效果。
+  - 房子下方静静显示微博、小红书、抖音的彩色小 Logo。
+
+- **点击展开状态（Unfolding Animation）**：
+  - 点击小房子，触发惊艳的展开动画：
+    - **展开逻辑**：小房子从中间向左右两侧平滑推开（类似双开门，或者屋顶保持在顶部作为标题栏，下方墙壁向两侧拉伸），总展开宽度达到 480px。
+    - **动画参数**：时长 400ms，使用 `cubic-bezier(0.25, 1, 0.5, 1)` (easeOutCubic) 缓动函数，极其丝滑。
+    - **标题栏**：留在顶部的屋顶下方优雅显现一行手写体文字：**"欢迎来我的自媒体小窝✨ / Welcome to my media cozy home✨"**。
+    - **卡片依次弹出（Staggered Entry）**：随着房子展开，3 个并排的社交链接卡片按**从左到右**的顺序依次弹出（每个卡片带有 `fade-in-up` 效果，延迟 100ms 递增）：
+      1. **左卡片（微博）**：
+         - 内容：@屿源氿晞
+         - 交互：点击在新标签页跳转至 @屿源氿晞 的微博个人主页。
+      2. **中卡片（小红书）**：
+         - 内容：@511号小宇宙
+         - 交互：点击在新标签页跳转至 511号小宇宙 的小红书个人主页。
+      3. **右卡片（小红书店铺）**：
+         - 内容：@然酱
+         - 交互：点击在新标签页跳转至店铺链接：`https://xhslink.com/m/560DuMAAljN` 下一个模块个人能力部分
+## 4. 个人能力汇总 (Personal Capabilities - Clean Tag Stack Style)
+*摒弃生硬的方框与复选框（图2），全面采用清晰、精致、富有设计感的“分类技术栈标签”样式（图3）：*
+
+- **整体布局**：
+  - 采用 4 列干净的垂直列布局，每列代表一个能力维度。
+  - 每一列顶部为分类标题（如“编程开发”），下方为**错落有致、大小适中的圆角标签（Badges）**。
+- **标签美学设计 (Tag/Badge Style)**：
+  - **背景与边框**：标签背景为纯白色或极淡的莫兰迪色，带有极细的灰色边框（`border border-gray-100`）和微弱的投影，显得干净、立体、清晰。
+  - **图标点缀**：每个标签文字左侧，配有一个精致的、低饱和度的小图标（如 SQL 旁配小数据库图标，CAD 旁配小尺子图标）。
+  - **字体**：英文与数字统一使用 **Calibri** 字体，字重适中，清晰易读。
+- **具体分类与标签内容**：
+  - **编程开发 (Programming)**：`SQL` | `C Programming` | `vibe coding` | `Python` | `C/C++`
+  - **办公效率 (Office Hacks)**：`Excel` | `Word` | `PowerPoint` | `Xmind`
+  - **工科设计 (Engineering)**：`CAD` | `ProE` | `Inventor` | `Comsol` | `Patran` | `SolidWorks` | `Altium` | `PCB` | `ROS/ROS2` | `Gazebo` | `Motion Control` | `RL` | `STM32` | `ESP32` | `FreeRTOS`
+  - **内容创作 (Content Studio)**：`image2` | `ChatGPT` | `剪映` | `稿定设计` | `即梦` | `Canvas` | `秀米`
+- **底部温暖寄语 (Warm Footer Statement)**：
+  - 在个人能力模块的最下方，居中添加一行极具情怀的手写体寄语。
+  - **文字内容**：`"✨ 学习一直在路上，探索永无止境... ✨"`
+  - **样式**：字号 18px，颜色为温暖的黄棕色（`#9E6B38`），加粗，带有微弱的呼吸灯光效。
+---
+
+## 3. 右侧：手写信笺与伙伴邀请 (Partnership & Contact Area)
+- **主标题**：手写体 `"期待能和你成为伙伴 ✨"`（字号 36px，米白色 `#FAFAFA`，字间距 4px）。
+- **副标题**：`"Let's create something beautiful together."`（字号 16px，暖灰色 `#A8A29E`，手写斜体）。
+- **手账邮局（联系方式）**：
+  - 下方排列 3-4 个**“手绘邮票/邮戳”样式**的社交图标（Email, WeChat, GitHub 等）。
+  - 邮票边缘呈锯齿状，背景为半透明米黄色，上面有黑色的简笔画 Icon。
+  - 鼠标悬停在邮票上时，邮票会像被盖章一样向下“陷”一下，并弹出一个手写体的小气泡提示（如“复制邮箱”或“扫码添加”）。
+
+---
+
+## 4. 氛围点缀与微动效 (Atmosphere & Micro-interactions)
+- **蝴蝶粒子**：当鼠标悬停在整个尾部区域时，从页面底部中央缓缓飘落 5-6 个半透明的、散发微光的手绘蝴蝶小粒子，在深色背景下如萤火虫般飞舞。
+- **手写签名**：在最右下角，有一个极小的、暗淡的手写体 `"thank u."` 签名，静静地躺在角落，不喧宾夺主。
+
+---
+
+## 5. 技术实现要求 (Technical Requirements)
+- 使用 React + Tailwind CSS 编写。
+- 拍立得的展开与收回必须使用 CSS `transform`（`translate` 和 `rotate`）实现，确保在移动端和 PC 端都极其丝滑。
+- 严格控制组件边界，确保所有照片展开后的最大宽度不超过 500px，高度不超过 400px，绝不溢出或撑大页面。
